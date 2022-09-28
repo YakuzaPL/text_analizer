@@ -16,19 +16,3 @@ def words_counter(words_list):
 
     return counted_words
 
-text_1 = "Lorem ipsum dolor sit amet."
-text_2 = "Test, test, kolejny, dla potrzeb, tej funkcji."
-text_3 = "Some some, exaple teXt, given. Here, just, for fun"
-
-list_1 = text_splitter(text_1)
-list_2 = text_splitter(text_2)
-list_3 = text_splitter(text_3)
-print(list_3)
-
-words_1 = words_counter(list_1)
-words_2 = words_counter(list_2)
-words_3 = words_counter(list_3)
-
-print(words_1)
-print(words_2)
-print(words_3)
