@@ -1,11 +1,26 @@
 import re
-def text_splitter(text):
+def text_to_words(text):
     list_of_words = re.split(r'\W+', text)
+    for element in list_of_words:
+        if element == '':
+            list_of_words.remove('')
     if '' in list_of_words:
         list_of_words.remove('')
     return list_of_words
 
-def words_counter(words_list):
+
+def text_to_letters(text):
+    list_of_words = re.split(r'\W*', text)
+    for element in list_of_words:
+        if element == '':
+            list_of_words.remove('')
+    if '' in list_of_words:
+        list_of_words.remove('')
+
+    return list_of_words
+
+
+def words_or_letters_counter(words_list):
     counted_words = {}
 
     for word in words_list:
