@@ -16,4 +16,5 @@ letter_list = text_to_letters(text)
 word_count = words_or_letters_counter(word_list)
 letter_count = words_or_letters_counter(letter_list)
 
-creating_CSV.creator_csv(word_count)
+creating_CSV.creator_csv('words', word_count)
+creating_CSV.creator_csv('letters', letter_count)
