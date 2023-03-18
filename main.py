@@ -5,13 +5,17 @@ from words_counter import text_to_words, words_or_letters_dict_creator, text_to_
 import creating_CSV
 import os
 
+
 dir_list = os.listdir('files/')
 
 for directory in dir_list:
     if directory.split('.')[1] == "docx":
         file_receiv.open_docx_file()
-        print("docx converted!")
+        # print("docx converted!")
 
+print("Choose a file to proceed.")
+for direction in dir_list:
+    print(direction.split('.')[0])
 
 text = open_txt_file()
 
