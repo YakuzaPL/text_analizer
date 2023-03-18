@@ -1,7 +1,3 @@
-#ToDo Open docx and doc files
-#ToDo generate csv file with the results
-#ToDo write results to data base
-
 from file_receiv import open_txt_file
 from words_counter import text_to_words, words_or_letters_counter, text_to_letters
 import creating_CSV
