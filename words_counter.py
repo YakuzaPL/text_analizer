@@ -20,7 +20,7 @@ def text_to_letters(text):
     return list_of_letters
 
 
-def words_or_letters_counter(word_or_letter_list):
+def words_or_letters_dict_creator(word_or_letter_list):
     counted_words_or_letters = {}
     for word in word_or_letter_list:
         word = word.lower()
