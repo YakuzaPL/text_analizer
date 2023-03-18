@@ -1,6 +1,4 @@
-
 import datetime
-
 
 def creator_csv(data_dict):
     file_name = input("Name your resulting file: ")
