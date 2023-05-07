@@ -1,6 +1,6 @@
 import docx2txt
 import glob
-
+import PyPDF2
 
 
 def open_txt_file(file_name):
@@ -12,8 +12,8 @@ def open_txt_file(file_name):
 
 
 
-def open_docx_file():
-    directory = glob.glob('C:/PycharmProjects/text_analizer/files/*.docx')
+def open_docx_file(file_name):
+    directory = glob.glob(f'C:/PycharmProjects/text_analizer/files/{file_name}')
 
     for file_name in directory:
         with open(file_name, 'rb') as infile:
@@ -24,3 +24,6 @@ def open_docx_file():
 
         outfile.close()
         infile.close()
+
+
+
