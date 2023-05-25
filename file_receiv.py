@@ -10,8 +10,6 @@ def open_txt_file(file_name):
         return read_file
 
 
-
-
 def open_docx_file(file_name):
     directory = glob.glob(f'C:/PycharmProjects/text_analizer/files/{file_name}')
 
@@ -24,6 +22,3 @@ def open_docx_file(file_name):
 
         outfile.close()
         infile.close()
-
-
-

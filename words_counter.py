@@ -1,34 +1,23 @@
+from collections import Counter
 import re
-def text_to_words(text):
-    list_of_words = re.split(r'\W+', text)
-    for element in list_of_words:
-        if element == '':
-            list_of_words.remove('')
-    if '' in list_of_words:
-        list_of_words.remove('')
-    return list_of_words
+import string
 
 
-def text_to_letters(text):
-    list_of_letters = re.split(r'\W*', text)
-    for element in list_of_letters:
-        if element == '':
-            list_of_letters.remove('')
-    if '' in list_of_letters:
-        list_of_letters.remove('')
+# counts the words frequency and returns it as a dict
+def word_counter(text):
+    word_count = Counter(re.findall('\w+', text.lower()))
+    return dict(word_count)
 
-    return list_of_letters
+def letter_counter(text):
+    # Removing whitespace and punctuation marks
+    text = text.translate(str.maketrans('', '', string.whitespace + string.punctuation))
 
+    # Converting text to lowercase
+    text = text.lower()
 
-def words_or_letters_dict_creator(word_or_letter_list):
-    counted_words_or_letters = {}
-    for word in word_or_letter_list:
-        word = word.lower()
-        if word in counted_words_or_letters.keys():
-            counted_words_or_letters[word] = counted_words_or_letters[word] + 1
-        else:
-            counted_words_or_letters[word] = 1
+    # Counting the frequency of each letter
+    letter_count = Counter(text)
 
-    return counted_words_or_letters
+    return dict(letter_count)
 
 
