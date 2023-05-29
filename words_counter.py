@@ -6,7 +6,7 @@ import PyPDF2
 import docx2txt
 
 
-class TextAnalizer():
+class TextAnalyzer():
 
     def __init__(self, file_path):
         self.file_path = file_path
@@ -53,3 +53,8 @@ class TextAnalizer():
         # Counting the frequency of each letter
         letter_count = Counter(text)
         return dict(letter_count)
+
+
+test = TextAnalyzer('test_files/txt_test.txt')
+
+print(test.word_count())

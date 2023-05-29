@@ -1,4 +1,4 @@
-from words_counter import TextAnalizer
+from words_counter import TextAnalyzer
 import creating_CSV
 import os
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
                 file_name = chosen_file.split('.')[0]
                 file_path = f'files/{chosen_file}'
 
-                text_for_analize = TextAnalizer(file_path)
+                text_for_analyze = TextAnalyzer(file_path)
 
 
         while chosen_file != None:
@@ -51,14 +51,14 @@ if __name__ == '__main__':
                 chosen_file = None
                 is_on = False
             elif menu_list[user_choice - 1] == 'Print the number of letters in text':
-                for key, value in text_for_analize.letter_count().items():
+                for key, value in text_for_analyze.letter_count().items():
                     print(f'{key} = {value}')
             elif menu_list[user_choice - 1] == 'Print the number of words in text':
-                for key, value in text_for_analize.word_count().items():
+                for key, value in text_for_analyze.word_count().items():
                     print(f'{key} = {value}')
             elif menu_list[user_choice - 1] == 'Save the results in CSV file':
-                creating_CSV.creator_csv(text_for_analize.word_count(), f'{file_name}_words')
-                creating_CSV.creator_csv(text_for_analize.letter_count(), f'{file_name}_letters')
+                creating_CSV.creator_csv(text_for_analyze.word_count(), f'{file_name}_words')
+                creating_CSV.creator_csv(text_for_analyze.letter_count(), f'{file_name}_letters')
             elif menu_list[user_choice - 1] == 'Choose different file':
                 chosen_file = None
 
