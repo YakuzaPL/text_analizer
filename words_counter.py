@@ -48,13 +48,9 @@ class TextAnalyzer():
                     read_file += page.extract_text()
 
         text = read_file.translate(str.maketrans('', '', string.whitespace + string.punctuation))
-        # Converting text to lowercase
         text = text.lower()
         # Counting the frequency of each letter
         letter_count = Counter(text)
         return dict(letter_count)
 
 
-test = TextAnalyzer('test_files/txt_test.txt')
-
-print(test.word_count())
