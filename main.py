@@ -1,6 +1,4 @@
-import file_receiv
-from file_receiv import open_txt_file
-from words_counter import word_counter, letter_counter
+from words_counter import TextAnalizer
 import creating_CSV
 import os
 
@@ -32,32 +30,13 @@ while is_on:
             user_file_name = int(input("Choose a file number to proceed: "))
             chosen_file = dir_list[user_file_name - 1]
 
-            # creating file name
+
+            # creating file name and file path
             file_name = chosen_file.split('.')[0]
+            file_path = f'files/{chosen_file}'
 
-            # generating word and letter list from .txt
-            if chosen_file[-4:] == ".txt":
-                text = open_txt_file(file_name)
+            text_for_analize = TextAnalizer(file_path)
 
-                letter_count_dict = letter_counter(text)
-
-                word_count_dict = word_counter(text)
-
-            # generating word and letter list from .docx
-            elif chosen_file[-5:] == '.docx':
-                file_receiv.open_docx_file(chosen_file)
-                text = open_txt_file(file_name)
-
-                letter_count_dict = letter_counter(text)
-
-                word_count_dict = word_counter(text)
-
-                os.remove(f'files/{chosen_file[:-5]}.txt')
-
-
-            elif chosen_file[-4:] == '.pdf':
-                print('Sorry, we are not yet supporting PDF files!')
-                chosen_file = None
 
     while chosen_file != None:
         print(f'"{chosen_file}" file is chosen!')
@@ -70,13 +49,13 @@ while is_on:
             chosen_file = None
             is_on = False
         elif menu_list[user_choice - 1] == 'Print the number of letters in text':
-            for key, value in letter_count_dict.items():
+            for key, value in text_for_analize.letter_count().items():
                 print(f'{key} = {value}')
         elif menu_list[user_choice - 1] == 'Print the number of words in text':
-            for key, value in word_count_dict.items():
+            for key, value in text_for_analize.word_count().items():
                 print(f'{key} = {value}')
         elif menu_list[user_choice - 1] == 'Save the results in CSV file':
-            creating_CSV.creator_csv(word_count_dict, f'{file_name}_words')
-            creating_CSV.creator_csv(letter_count_dict, f'{file_name}_letters')
+            creating_CSV.creator_csv(text_for_analize.word_count(), f'{file_name}_words')
+            creating_CSV.creator_csv(text_for_analize.letter_count(), f'{file_name}_letters')
         elif menu_list[user_choice - 1] == 'Choose different file':
             chosen_file = None

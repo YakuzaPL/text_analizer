@@ -2,22 +2,71 @@ from collections import Counter
 import re
 import string
 
-
-# counts the words frequency and returns it as a dict
-def word_counter(text):
-    word_count = Counter(re.findall('\w+', text.lower()))
-    return dict(word_count)
-
-def letter_counter(text):
-    # Removing whitespace and punctuation marks
-    text = text.translate(str.maketrans('', '', string.whitespace + string.punctuation))
-
-    # Converting text to lowercase
-    text = text.lower()
-
-    # Counting the frequency of each letter
-    letter_count = Counter(text)
-
-    return dict(letter_count)
+import PyPDF2
+import docx2txt
 
 
+class TextAnalizer():
+
+    def __init__(self, file_path):
+        self.file_path = file_path
+
+    def word_count(self):
+        if self.file_path.endswith('.txt'):
+            with open(self.file_path, "r") as f:
+                read_file = f.read()
+                word_count = Counter(re.findall('\w+', read_file.lower()))
+                return dict(word_count)
+        elif self.file_path.endswith('.docx'):
+            read_file = docx2txt.process(self.file_path)
+            word_count = Counter(re.findall('\w+', read_file.lower()))
+            return dict(word_count)
+
+        elif self.file_path.endswith('.pdf'):
+            with open(self.file_path, 'rb') as file:
+                reader = PyPDF2.PdfReader(file)
+                num_pages = len(reader.pages)
+                read_file = ""
+                for page_num in range(num_pages):
+                    page = reader.pages[page_num]
+                    read_file += page.extract_text()
+            word_count = Counter(re.findall('\w+', read_file.lower()))
+            return dict(word_count)
+
+    def letter_count(self):
+        if self.file_path.endswith('.txt'):
+            with open(self.file_path, "r") as f:
+                read_file = f.read()
+            # Removing whitespace and punctuation marks
+            text = read_file.translate(str.maketrans('', '', string.whitespace + string.punctuation))
+            # Converting text to lowercase
+            text = text.lower()
+            # Counting the frequency of each letter
+            letter_count = Counter(text)
+            return dict(letter_count)
+
+        elif self.file_path.endswith('.docx'):
+            read_file = docx2txt.process(self.file_path)
+            # Removing whitespace and punctuation marks
+            text = read_file.translate(str.maketrans('', '', string.whitespace + string.punctuation))
+            # Converting text to lowercase
+            text = text.lower()
+            # Counting the frequency of each letter
+            letter_count = Counter(text)
+            return dict(letter_count)
+
+        elif self.file_path.endswith('.pdf'):
+            with open(self.file_path, 'rb') as file:
+                reader = PyPDF2.PdfReader(file)
+                num_pages = len(reader.pages)
+                read_file = ""
+                for page_num in range(num_pages):
+                    page = reader.pages[page_num]
+                    read_file += page.extract_text()
+
+            text = read_file.translate(str.maketrans('', '', string.whitespace + string.punctuation))
+            # Converting text to lowercase
+            text = text.lower()
+            # Counting the frequency of each letter
+            letter_count = Counter(text)
+            return dict(letter_count)
