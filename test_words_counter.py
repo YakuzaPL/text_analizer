@@ -1,5 +1,5 @@
 import pytest
-from words_counter import text_to_words, letters_dict_creator, text_to_letters
+from words_counter import TextAnalizer
 
 
 def text_to_words():
